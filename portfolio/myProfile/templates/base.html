@@ -1,0 +1,125 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="{% static "img/favicon.png"%}" type="image/png">
+    <title>{% block title %}{% endblock title %}</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static "css/bootstrap.css" %}" >
+    <link rel="stylesheet" href="{% static "vendors/linericon/style.css" %}" >
+    <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+    <link href="{% static "vendors/owl-carousel/owl.carousel.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/magnific-popup.css" %}" rel="stylesheet">
+    <link href="{% static "vendors/nice-select/css/nice-select.css" %}" rel="stylesheet">
+    <!-- main css -->
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+</head>
+
+<body>
+
+    <!--================ Start Header Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="{% url "myProfile:home"%}"><img src="{% static 'img/logo.png' %}" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+                            <li class="nav-item {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+                                <a class="nav-link" href="{% url 'myProfile:home' %}">Home</a>
+                            </li>
+                            <li class="nav-item {% if request.resolver_match.url_name == 'services' %}active{% endif %}">
+                                <a class="nav-link" href="{% url 'myProfile:services' %}">Services</a>
+                            </li>
+                            <!-- Add more navigation items here -->
+                            <li class="nav-item submenu dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item {% if request.resolver_match.url_name == 'professional_projects' %}active{% endif %}">
+                                        <a class="nav-link" href="{% url 'myProfile:professional_projects' %}">Professional</a>
+                                    </li>
+                                    <li class="nav-item {% if request.resolver_match.url_name == 'personal_projects' %}active{% endif %}">
+                                        <a class="nav-link" href="{% url 'myProfile:personal_projects' %}">Personal</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            {% comment %} <li class="nav-item submenu dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                    aria-expanded="false">Blog</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
+                                </ul>
+                            </li> {% endcomment %}
+                            <li class="nav-item {% if request.resolver_match.url_name == 'contact' %}active{% endif %}"><a class="nav-link" href="{% url "myProfile:contact"%}">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================ End Header Area =================-->
+    {% block content %}
+
+    {% endblock content %}
+
+    <!--================Footer Area =================-->
+    <footer class="footer_area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="footer_top flex-column">
+                        <div class="footer_logo">
+                            <a href="#">
+                                {% comment %} <img src="{% static 'img/logo.png' %}" alt=""> {% endcomment %}
+                            </a>
+                            <h4>Follow Me</h4>
+                        </div>
+                        <div class="footer_social">
+                            <a href="https://www.facebook.com/asiebhasan.supto"><i class="fa fa-facebook"></i></a>
+                            <a href="https://github.com/asiebHasan/"><i class="fa fa-github" aria-hidden="true"></i></i></a>
+                            <a href="https://www.linkedin.com/in/asieb-hasan/"><i class="fa fa-linkedin"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row footer_bottom justify-content-center">
+                <p class="col-lg-8 col-sm-12 footer-text">
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/stellar.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'vendors/nice-select/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'vendors/isotope/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'vendors/isotope/isotope-min.js' %}"></script>
+    <script src="{% static 'vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'js/mail-script.js' %}"></script>
+</body>
+
+</html>

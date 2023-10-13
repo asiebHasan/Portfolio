@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Professional Projects{% endblock title %}
+
+{% block content %}
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content text-center">
+                <h2>{{category}} Projects</h2>
+                <div class="page_link">
+                    <a href="{% url "myProfile:home"%}">Home</a>
+                    <a href="{% url "myProfile:professional_projects"%}">{{category}} Projects</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================ End Banner Area =================-->
+<section class="blog_area single-post-area section_gap">
+    <div class="container">
+        {% for project in projects %}
+
+        <div class="row pt-5">
+            <div class="col-lg-12 posts-list">
+                <div class="single-post row">
+                    <div class="col-lg-12">
+                        <div class="slider-container">
+                            <div id="myCarousel-{{ project.id }}" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ul class="carousel-indicators">
+                                    {% for image in project.images.all %}
+                                        <li data-target="#myCarousel-{{ project.id }}" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
+                                    {% endfor %}
+                                </ul>
+                    
+                                <!-- Slides -->
+                                <div class="carousel-inner">
+                                    {% for image in project.images.all %}
+                                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                            <img src="{{ image.image.url }}" alt="{{ project.name }} Image">
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                    
+                                <!-- Controls -->
+                                <a class="carousel-control-prev" href="#myCarousel-{{ project.id }}" data-slide="prev">
+                                    <i class="fa fa-chevron-left" style="font-size:36px;color:#4458dc"></i>
+                                </a>
+                                <a class="carousel-control-next" href="#myCarousel-{{ project.id }}" data-slide="next">
+                                    <i class="fa fa-chevron-right" style="font-size:36px;color:#4458dc"></i>
+                                </a>
+                            </div>
+                        </div>								
+                    </div>
+                    <div class="col-lg-12 col-md-12 blog_details">
+                        <h2>{{ project.name }}</h2>
+                        <p class="excert">
+                            {% if 'professional' in category %}
+                                <a href="{{project.url}}">{{project.url}}</a>
+                            {% else %}
+                                <a href="{{project.github}}">{{project.github}}</a>
+                            {% endif %}
+                        </p>
+                        <p>
+                            {{ project.details|linebreaksbr|truncatechars:200 }}
+                        </p>
+                        <p class="pt-2">
+                            <a href="{{ project.get_absolute_url }}" class="primary_btn"><span>View More</span></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="hr" />
+        {% endfor %}
+   
+
+
+
+{% endblock content %}

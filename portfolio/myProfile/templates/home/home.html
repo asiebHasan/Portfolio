@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Asieb's Portfolio
+{% endblock title %}
+
+{% block content %}
+	<!--================ Start Home Banner Area =================-->
+	<section class="home_banner_area">
+		<div class="banner_inner">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-7">
+						<div class="banner_content">
+							<h3 class="text-uppercase">Hell0</h3>
+							<h1 class="text-uppercase">{{user_info.full_name}}</h1>
+							<h5 class="text-uppercase">{{user_info.developer_type}}</h5>
+							<div class="d-flex align-items-center">
+								<a class="primary_btn" href="{% url "myProfile:download-cv"%}"><span>Download CV</span></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-5">
+						<div class="home_right_img">
+							<img class="slide-in-right" src="{% static 'img/banner/home-right.png' %}" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================ End Home Banner Area =================-->
+
+	<!--================ Start About Us Area =================-->
+	<section class="about_area section_gap">
+		<div class="container">
+			<div class="row justify-content-start align-items-center">
+				<div class="col-lg-5">
+					<div class="about_img ">
+						<img class="slide-in-left" src="{% static "img/about-us.png"%}" alt="">
+					</div>
+				</div>
+
+				<div class="offset-lg-1 col-lg-5">
+					<div class="main_title text-left">
+						<h2>let’s <br>
+							Introduce about <br>
+							myself</h2>
+						<p>
+							{{user_info.about_me|linebreaksbr|safe}}
+						</p>
+						<a class="primary_btn" href="{% url "myProfile:download-cv"%}"><span>Download CV</span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================ End About Us Area =================-->
+
+	<!--================ Start Features Area =================-->
+	<section class="features_area">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-8 text-center">
+					<div class="main_title">
+						<h2>service offers </h2>
+					</div>
+				</div>
+			</div>
+			<div class="row feature_inner">
+				{% for service in services %}
+					<div class="col-lg-3 col-md-6">
+						<div class="feature_item">
+							<img src="{{ service.image.url }}" alt="{{ service.service_name }}">
+							<h4> {{service.service_name}} </h4>
+							<p>{{service.details}}</p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<!--================ End Features Area =================-->
+
+
+
+{% endblock content %}
